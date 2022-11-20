@@ -11,7 +11,7 @@ export default function Stories() {
     ]
 
     return(
-        <>
+        <div className="stories">
         {story.map((s) => (
             <div className="story">
              <div className="imagem">
@@ -26,6 +26,6 @@ export default function Stories() {
         <div className="setinha">
             <ion-icon name="chevron-forward-circle"></ion-icon>
         </div>
-        </>
+        </div>
     )
 }
