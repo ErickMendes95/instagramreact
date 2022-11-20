@@ -5,6 +5,7 @@ export default function Corpo(){
     return(
         <>
         <Stories/>
+        <Posts/>
         </>
     )
 }
