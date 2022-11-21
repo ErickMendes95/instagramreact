@@ -4,7 +4,7 @@ import Usuario from "./Usuario"
 export default function SideBar(){
     return (
         <div className="sidebar">
-            <Usuario/>
+            <Usuario usuario="catanacomics"/>
             <Sugestoes/>
         </div>
     )
