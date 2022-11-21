@@ -11,8 +11,7 @@ export default function Posts() {
             {postagens.map((p) => (
                 <div data-test="post" className="post">
                 <Topo image={p.imagemUsuario} user={p.usuario}/>
-                <Conteudo post={p.postagem}/>
-                <Fundo image={p.imagemCurtida} user={p.usuarioCurtida}/>
+                <ConteudoeFundo post={p.postagem} image={p.imagemCurtida} user={p.usuarioCurtida}/>
                 </div>
                 ))}
         </div>  
@@ -37,17 +36,19 @@ function Topo({image, user}){
     )
 }
 
-function Conteudo({post}){
-    return(
-        
-        <div className="conteudo">
-              <img data-test="post-image" src={post} />
-            </div>
-        
-    )
-}
 
-function Fundo({image, user}){
+function ConteudoeFundo({post, image, user}){
+
+    function darLikeFoto() {
+        if(nomeLike === "heart-outline"){
+            setNomeLike("heart")
+            setCorLike("#f00")
+            numeroLike = Number(numeroLike.replace(/\./g, ""))
+            numeroLike = numeroLike+1
+            setNumeroLike(numeroLike.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."))
+
+        }
+    }
 
     let [numeroLike, setNumeroLike] = useState("101.523")
     function mudarNumeroLike(){
@@ -90,6 +91,10 @@ function Fundo({image, user}){
     }
 
     return(
+        <>
+        <div className="conteudo">
+            <img data-test="post-image" src={post} onClick={darLikeFoto} />
+        </div>
         
         <div className="fundo">
             <div className="acoes">
@@ -110,6 +115,6 @@ function Fundo({image, user}){
           </div>
         </div>
         </div>
-      
+        </>
     )
 }
