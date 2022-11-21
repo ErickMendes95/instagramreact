@@ -6,11 +6,21 @@ export default function Usuario(props) {
     const [imagem,setImagem] = useState("assets/img/catanacomics.svg")
 
     function inserirNome(){
-        setNome(prompt("Escreve o nome que deseja"))
+        let inserenome = prompt("Escreve o nome que deseja")
+        if(!inserenome){
+            alert("Nome inválido")
+        } else {
+        setNome(inserenome)
+    }
     }
 
     function inserirImagem(){
-        setImagem(prompt("Insira o link da imagem"))
+        let inserefoto = prompt("Insira o link da foto")
+        if(!inserefoto){
+            alert("Link inválido")
+        } else{
+        setNome(inserefoto)
+    }
     }
     return (
             <div data-test="user" className="usuario">
