@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 const postagens =[
     {imagemUsuario: "assets/img/meowed.svg", usuario: "meowed", postagem: "assets/img/gato-telefone.svg", imagemCurtida: "assets/img/respondeai.svg", usuarioCurtida: "respondeai"},
     {imagemUsuario: "assets/img/barked.svg", usuario: "barked", postagem: "assets/img/dog.svg", imagemCurtida: "assets/img/adorable_animals.svg", usuarioCurtida: "adorable_animals"}
@@ -46,6 +48,19 @@ function Conteudo({post}){
 }
 
 function Fundo({image, user}){
+
+    const [nomeBookmark, setNome] = useState("bookmark-outline")
+    const [corBookmark, setCor] = useState("#000")
+    function mudarBookmark(){
+        if(nomeBookmark === "bookmark-outline"){
+            setNome("bookmark")
+            setCor("#fc0")
+        } else if (nomeBookmark === "bookmark"){
+            setNome("bookmark-outline")
+            setCor("#000")
+        }
+    }
+
     return(
         
         <div className="fundo">
@@ -56,7 +71,7 @@ function Fundo({image, user}){
                 <ion-icon name="paper-plane-outline"></ion-icon>
             </div>
             <div>
-                <ion-icon data-test="save-post" name="bookmark-outline"></ion-icon>
+                <ion-icon data-test="save-post" style={{color:corBookmark}} name={nomeBookmark} onClick={mudarBookmark}></ion-icon>
             </div>
         </div>
 
