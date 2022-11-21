@@ -19,7 +19,7 @@ export default function Usuario(props) {
         if(!inserefoto){
             alert("Link inválido")
         } else{
-        setNome(inserefoto)
+        setImagem(inserefoto)
     }
     }
     return (
