@@ -49,15 +49,43 @@ function Conteudo({post}){
 
 function Fundo({image, user}){
 
-    const [nomeBookmark, setNome] = useState("bookmark-outline")
-    const [corBookmark, setCor] = useState("#000")
+    let [numeroLike, setNumeroLike] = useState("101.523")
+    function mudarNumeroLike(){
+        if(nomeLike === "heart"){
+            numeroLike = Number(numeroLike.replace(/\./g, ""))
+            numeroLike = numeroLike-1
+            setNumeroLike(numeroLike.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")) 
+        } else if(nomeLike === "heart-outline"){
+            numeroLike = Number(numeroLike.replace(/\./g, ""))
+            numeroLike = numeroLike+1
+            setNumeroLike(numeroLike.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."))
+        }
+
+    }
+
+    const [nomeLike, setNomeLike] = useState("heart-outline")
+    const [corLike, setCorLike] = useState("#000")
+    function mudarLike(){
+        if(nomeLike === "heart-outline"){
+            setNomeLike("heart")
+            setCorLike("#f00")
+            mudarNumeroLike()
+        } else if (nomeLike === "heart"){
+            setNomeLike("heart-outline")
+            setCorLike("#000")
+            mudarNumeroLike()
+        }
+    }
+
+    const [nomeBookmark, setNomeBookmark] = useState("bookmark-outline")
+    const [corBookmark, setCorBookmark] = useState("#000")
     function mudarBookmark(){
         if(nomeBookmark === "bookmark-outline"){
-            setNome("bookmark")
-            setCor("#fc0")
+            setNomeBookmark("bookmark")
+            setCorBookmark("#fc0")
         } else if (nomeBookmark === "bookmark"){
-            setNome("bookmark-outline")
-            setCor("#000")
+            setNomeBookmark("bookmark-outline")
+            setCorBookmark("#000")
         }
     }
 
@@ -66,7 +94,7 @@ function Fundo({image, user}){
         <div className="fundo">
             <div className="acoes">
             <div>
-                <ion-icon data-test="like-post" name="heart-outline"></ion-icon>
+                <ion-icon data-test="like-post" style={{color:corLike}} name={nomeLike} onClick={mudarLike}></ion-icon>
                 <ion-icon name="chatbubble-outline"></ion-icon>
                 <ion-icon name="paper-plane-outline"></ion-icon>
             </div>
@@ -78,7 +106,7 @@ function Fundo({image, user}){
         <div className="curtidas">
           <img src={image} />
           <div className="texto">
-            Curtido por <strong>{user}</strong> e <strong>outras <span data-test="likes-number">101.523</span> pessoas</strong>
+            Curtido por <strong>{user}</strong> e <strong>outras <span data-test="likes-number">{numeroLike}</span> pessoas</strong>
           </div>
         </div>
         </div>
